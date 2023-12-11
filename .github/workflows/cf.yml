@@ -31,6 +31,8 @@ jobs:
           git config --local user.email "${{ secrets.EMAIL }}"
           git config --local user.name "${{ github.actor }}"
           git status
+          git add .gitignore
+          git commit -m "Add .gitignore file"
           git add "ip.txt"
           git commit -m "Update ip.txt"
           git push origin main
