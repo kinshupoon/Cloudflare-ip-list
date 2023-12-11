@@ -34,7 +34,7 @@ jobs:
           git rm -r --cached .
           git add .
           git commit -m "Update .gitignore rules"
-          git add .gitignore
+          git add -f .gitignore
           git commit -m "Add .gitignore file"
           git add "ip.txt"
           git commit -m "Update ip.txt"
