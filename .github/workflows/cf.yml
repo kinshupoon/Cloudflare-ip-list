@@ -22,16 +22,15 @@ jobs:
       - name: Update Cloudflare CDN ip
         run: |
           git clone https://github.com/hello-earth/cloudflare-better-ip.git
-          mv ./cloudflare-better-ip/cloudflare/*.txt ./
           wget https://raw.githubusercontent.com/vfarid/cf-clean-ips/main/list.txt -O list.txt
-          cat ./*.txt > ./all.txt
+          cat ./cloudflare-better-ip/cloudflare/*.txt ./list.txt > ./all.txt
           grep -E -o '([0-9]{1,3}\.){3}[0-9]{1,3}' all.txt | sort -u > ip.txt
           wget https://raw.githubusercontent.com/kinshupoon/CloudflareSpeedTest/master/ip4.txt -O ip4.txt
           cat ./ip4.txt >> ip.txt
+          rm -rf ./cloudflare-better-ip/ list.txt all.txt ip4.txt
           git config --local user.email "${{ secrets.EMAIL }}"
           git config --local user.name "${{ github.actor }}"
           git remote set-url origin https://${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
-          git rm "ip.txt"
           git add "ip.txt"
           git commit -m "Update ip.txt"
           git push origin main
