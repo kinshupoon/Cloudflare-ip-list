@@ -31,6 +31,7 @@ jobs:
           git config --local user.email "${{ secrets.EMAIL }}"
           git config --local user.name "${{ github.actor }}"
           git remote set-url origin https://${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
+          git rm "ip.txt"
           git add "ip.txt"
-          git commit --allow-empty -m "Update ip.txt"
+          git commit -m "Update ip.txt"
           git push origin main
