@@ -38,4 +38,5 @@ jobs:
           git commit -m "Add .gitignore file"
           git add "ip.txt"
           git commit -m "Update ip.txt"
+          git pull origin main
           git push origin main
