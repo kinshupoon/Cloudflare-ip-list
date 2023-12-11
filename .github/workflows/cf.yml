@@ -30,7 +30,6 @@ jobs:
           cat ./ip4.txt >> ip.txt
           git config --local user.email "${{ secrets.EMAIL }}"
           git config --local user.name "${{ github.actor }}"
-          git remote set-url origin https://${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
           git status
           git add "ip.txt"
           git commit -m "Update ip.txt"
