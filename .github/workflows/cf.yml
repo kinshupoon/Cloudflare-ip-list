@@ -1,4 +1,4 @@
-name: rm old_epg
+name: update cf cdn ip
 
 on:
   push:
@@ -9,7 +9,7 @@ on:
   workflow_dispatch:    # 允许手动执行
   
 jobs:
-  autogreen:
+  build:
     runs-on: ubuntu-latest
     
     permissions:
