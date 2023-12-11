@@ -31,6 +31,9 @@ jobs:
           git config --local user.email "${{ secrets.EMAIL }}"
           git config --local user.name "${{ github.actor }}"
           git status
+          git rm -r --cached .
+          git add .
+          git commit -m "Update .gitignore rules"
           git add .gitignore
           git commit -m "Add .gitignore file"
           git add "ip.txt"
