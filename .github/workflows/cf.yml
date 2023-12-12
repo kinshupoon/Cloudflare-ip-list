@@ -25,9 +25,9 @@ jobs:
           wget https://raw.githubusercontent.com/vfarid/cf-clean-ips/main/list.txt -O list.txt
           cat ./cloudflare-better-ip/cloudflare/*.txt ./list.txt > ./all.txt
           grep -E -o '([0-9]{1,3}\.){3}[0-9]{1,3}' all.txt | sort -u > ip.txt
-          wget https://www.cloudflare.com/ips-v4/# -O ip4.txt && cat ./ip4.txt >> ip.txt
-          wget https://www.cloudflare.com/ips-v6/# -O ip6.txt && cat ./ip6.txt >> ip.txt
-          rm -rf ./cloudflare-better-ip/ list.txt all.txt ip4.txt ip6.txt
+          wget https://www.cloudflare.com/ips-v4/# -O ip4.txt
+          cat ./ip4.txt >> ip.txt
+          rm -rf ./cloudflare-better-ip/ list.txt all.txt ip4.txt
           git config --local user.email "${{ secrets.EMAIL }}"
           git config --local user.name "${{ github.actor }}"
           git remote set-url origin https://${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
