@@ -20,7 +20,7 @@ jobs:
         uses: actions/checkout@v3
         
       - name: Set date as an environment variable
-        run: echo "DATE=$(date -d "8 hours" +'%Y-%m-%d %H:%M:%S')" >> $GITHUB_ENV
+        run: echo "DATE=$(date -d "8 hours" +'%Y-%m-%d-%H:%M:%S')" >> $GITHUB_ENV
 
       - name: Show the stored date
         run: echo $DATE  # 这一步是为了确保日期被正确存储到了环境变量中     
