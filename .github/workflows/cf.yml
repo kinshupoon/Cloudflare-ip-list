@@ -44,6 +44,7 @@ jobs:
           git config --local user.name "${{ github.actor }}"
           echo "Step 10 completed"
           git remote set-url origin https://${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
+          git status
           echo "Step 11 completed"
           git add "ip.txt"
           echo "Step 12 completed"
