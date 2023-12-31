@@ -5,7 +5,7 @@ on:
     branches:
       - main
   schedule:
-    - cron: "50 0-15/3,22 * * *"   # 设置定时执行，例如每天零点执行
+    - cron: "50 0-15/3,21 * * *"   # 设置定时执行，例如每天零点执行
   workflow_dispatch:    # 允许手动执行
   
 jobs:
