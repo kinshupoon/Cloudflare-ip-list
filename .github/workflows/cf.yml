@@ -18,7 +18,13 @@ jobs:
     steps:
       - name: Clone repository
         uses: actions/checkout@v3
-          
+        
+      - name: Set date as an environment variable
+        run: echo "DATE=$(date -d "8 hours" +'%Y-%m-%d %H:%M:%S')" >> $GITHUB_ENV
+
+      - name: Show the stored date
+        run: echo $DATE  # 这一步是为了确保日期被正确存储到了环境变量中     
+        
       - name: Update Cloudflare CDN ip
         run: |
           git clone https://github.com/hello-earth/cloudflare-better-ip.git
@@ -48,6 +54,6 @@ jobs:
           echo "Step 11 completed"
           git add "ip.txt"
           echo "Step 12 completed"
-          git commit -m "Update ip.txt -$(date -d "8 hours" "+%m%d%H%M%S")"
+          git commit -m "Update ip.txt -${{ env.DATE }}"
           echo "Step 13 completed"
           git push origin main
