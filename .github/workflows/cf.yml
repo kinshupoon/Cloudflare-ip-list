@@ -5,7 +5,7 @@ on:
     branches:
       - main
   schedule:
-    - cron: "50 0-15/3,21 * * *"   # 设置定时执行，例如每天零点执行
+    - cron: "10 2 * * *"   # 设置定时执行，例如每天零点执行
   workflow_dispatch:    # 允许手动执行
   
 jobs:
@@ -18,42 +18,22 @@ jobs:
     steps:
       - name: Clone repository
         uses: actions/checkout@v3
-        
-      - name: Set date as an environment variable
-        run: echo "DATE=$(date -d "8 hours" +'%Y-%m-%d-%H:%M:%S')" >> $GITHUB_ENV
-
-      - name: Show the stored date
-        run: echo $DATE  # 这一步是为了确保日期被正确存储到了环境变量中     
-        
+          
       - name: Update Cloudflare CDN ip
         run: |
           git clone https://github.com/hello-earth/cloudflare-better-ip.git
-          echo "Step 1 completed"
           git clone https://github.com/ip-scanner/cloudflare.git
-          echo "Step 2 completed"
           wget https://raw.githubusercontent.com/vfarid/cf-clean-ips/main/list.txt -O list.txt
-          echo "Step 3 completed"
           wget https://raw.githubusercontent.com/ymyuuu/Proxy-IP-library/main/best-ip.txt -O 1.txt
-          echo "Step 4 completed"
           wget https://raw.githubusercontent.com/ymyuuu/Proxy-IP-library/main/ip.txt -O 2.txt
-          echo "Step 5 completed"
           cat ./cloudflare-better-ip/cloudflare/*.txt ./cloudflare/*.csv ./*.txt > ./all.txt
-          echo "Step 6 completed"
           grep -E -o '([0-9]{1,3}\.){3}[0-9]{1,3}' all.txt | sort -u > ip.txt
-          echo "Step 7 completed"
           #wget https://www.cloudflare.com/ips-v4/# -O ip4.txt
           #cat ./ip4.txt >> ip.txt
           rm -rf ./cloudflare-better-ip/ ./cloudflare/ list.txt all.txt ip4.txt 1.txt 2.txt
-          echo "Step 8 completed"
           git config --local user.email "${{ secrets.EMAIL }}"
-          echo "Step 9 completed"
           git config --local user.name "${{ github.actor }}"
-          echo "Step 10 completed"
           git remote set-url origin https://${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
-          git status
-          echo "Step 11 completed"
           git add "ip.txt"
-          echo "Step 12 completed"
-          git commit -m "Update ip.txt -${{ env.DATE }}"
-          echo "Step 13 completed"
+          git commit -m "Update ip.txt"
           git push origin main
