@@ -47,6 +47,6 @@ jobs:
           echo "Step 11 completed"
           git add "ip.txt"
           echo "Step 12 completed"
-          git commit -m "Update ip.txt"
+          git commit -m "Update ip.txt -$(date -d "8 hours" "+%m%d%H%M%S")"
           echo "Step 13 completed"
           git push origin main
