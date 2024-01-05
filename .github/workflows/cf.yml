@@ -28,8 +28,8 @@ jobs:
           wget https://raw.githubusercontent.com/ymyuuu/Proxy-IP-library/main/ip.txt -O 2.txt
           cat ./cloudflare-better-ip/cloudflare/*.txt ./cloudflare/*.csv ./*.txt > ./all.txt
           grep -E -o '([0-9]{1,3}\.){3}[0-9]{1,3}' all.txt | sort -u > ip.txt
-          #wget https://www.cloudflare.com/ips-v4/# -O ip4.txt
-          #cat ./ip4.txt >> ip.txt
+          wget https://www.cloudflare.com/ips-v4/# -O ip4.txt
+          cat ./ip4.txt >> ip.txt
           rm -rf ./cloudflare-better-ip/ ./cloudflare/ list.txt all.txt ip4.txt 1.txt 2.txt
           git config --local user.email "${{ secrets.EMAIL }}"
           git config --local user.name "${{ github.actor }}"
