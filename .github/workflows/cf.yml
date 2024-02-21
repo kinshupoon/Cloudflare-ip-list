@@ -25,12 +25,12 @@ jobs:
           git clone https://github.com/hello-earth/cloudflare-better-ip.git
           git clone https://github.com/ip-scanner/cloudflare.git
           wget https://raw.githubusercontent.com/vfarid/cf-clean-ips/main/list.txt -O list.txt
-          wget https://raw.githubusercontent.com/ymyuuu/Proxy-IP-library/main/best-ip.txt -O 1.txt
+          #wget https://raw.githubusercontent.com/ymyuuu/Proxy-IP-library/main/best-ip.txt -O 1.txt
           cat ./cloudflare-better-ip/cloudflare/*.txt ./cloudflare/*.csv ./*.txt > ./all.txt
           grep -E -o '([0-9]{1,3}\.){3}[0-9]{1,3}' all.txt | sort -u > ip.txt
           wget https://www.cloudflare.com/ips-v4/# -O ip4.txt
           cat ./ip4.txt >> ip.txt
-          rm -rf ./cloudflare-better-ip/ ./cloudflare/ list.txt all.txt ip4.txt 1.txt
+          rm -rf ./cloudflare-better-ip/ ./cloudflare/ list.txt all.txt ip4.txt #1.txt
           git config --local user.email "${{ secrets.EMAIL }}"
           git config --local user.name "${{ github.actor }}"
           git remote set-url origin https://${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
