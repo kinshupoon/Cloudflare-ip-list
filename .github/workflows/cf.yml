@@ -1,9 +1,6 @@
 name: update cf cdn ip
 
 on:
-  push:
-    branches:
-      - main
   schedule:
     - cron: "50 0 * * *"   # 设置定时执行，例如每天零点执行
   workflow_dispatch:    # 允许手动执行
